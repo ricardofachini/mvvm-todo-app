@@ -1,5 +1,6 @@
 package com.example.todoapp.home.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -7,10 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.domain.model.Todo
 import com.example.todoapp.databinding.TodoItemBinding
 
-class TasksAdapter(
-    private val todoItems: List<Todo>,
-    private val onClick: (position: Int) -> Unit
-): ListAdapter<Todo, TasksViewHolder>(TasksAdapter) {
+class TasksAdapter(): ListAdapter<Todo, TasksViewHolder>(TasksAdapter) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TasksViewHolder {
         val binding = TodoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -18,10 +16,11 @@ class TasksAdapter(
     }
 
     override fun onBindViewHolder(holder: TasksViewHolder, position: Int) {
-        holder.bind(todoItems[position], onClick)
+        val task = getItem(position)
+        holder.bind(task)
     }
 
-    private companion object: DiffUtil.ItemCallback<Todo>() {
+    companion object TodoDiffCallback: DiffUtil.ItemCallback<Todo>() {
         override fun areItemsTheSame(oldItem: Todo, newItem: Todo): Boolean {
             return oldItem.title == newItem.title
         }

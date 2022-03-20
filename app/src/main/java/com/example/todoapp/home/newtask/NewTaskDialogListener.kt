@@ -1,5 +1,5 @@
 package com.example.todoapp.home.newtask
 
 interface NewTaskDialogListener {
-    fun onPositiveClick()
+    fun onPositiveClick(title: String)
 }

@@ -7,12 +7,12 @@ import com.example.todoapp.databinding.TodoItemBinding
 
 class TasksViewHolder(private val todoBinding: TodoItemBinding):
     RecyclerView.ViewHolder(todoBinding.root) {
-        fun bind(item: Todo, onClick: (position: Int) -> Unit) {
-            todoBinding.apply {
+        fun bind(item: Todo) {
+            with(todoBinding) {
                 todoTitle.text = item.title
                 checkbox.isChecked = item.isDone
                 root.setOnClickListener {
-                    onClick(adapterPosition)
+                    checkbox.isChecked = !item.isDone
                 }
             }
         }

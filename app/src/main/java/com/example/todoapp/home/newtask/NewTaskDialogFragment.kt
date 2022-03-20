@@ -1,13 +1,17 @@
 package com.example.todoapp.home.newtask
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.util.Log
+import android.widget.EditText
 import androidx.fragment.app.DialogFragment
 import com.example.todoapp.R
-import java.lang.ClassCastException
-import java.lang.IllegalStateException
+import kotlinx.android.synthetic.main.fragment_new_task_dialog.*
+
 
 class NewTaskDialogFragment: DialogFragment() {
 
@@ -22,17 +26,23 @@ class NewTaskDialogFragment: DialogFragment() {
         }
     }
 
+    @SuppressLint("InflateParams")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
 
             val inflater = requireActivity().layoutInflater
+            val newTaskView = inflater.inflate(R.layout.fragment_new_task_dialog, null)
+            val title = newTaskView.findViewById<EditText>(R.id.newTaskTitle)
 
-            builder.setView(inflater.inflate(R.layout.fragment_new_task_dialog, null))
+            builder.setView(newTaskView)
                 .setPositiveButton("Adicionar") { _, _ ->
-                        listener.onPositiveClick()
+                        val titleString = title.text.toString()
+                        listener.onPositiveClick(titleString)
                     }
-                .setNegativeButton("Cancelar") { _,_ ->}
+                .setNegativeButton("Cancelar") { dialog, which ->
+                    getDialog()?.cancel()
+                }
 
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")
