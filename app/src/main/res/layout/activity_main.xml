@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".home.MainActivity">
 
     <!-- and up comes the toolbar - that's what she said -->
     <androidx.appcompat.widget.Toolbar

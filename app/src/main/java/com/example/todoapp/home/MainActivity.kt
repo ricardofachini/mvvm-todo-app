@@ -1,4 +1,4 @@
-package com.example.todoapp
+package com.example.todoapp.home
 
 
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.todoapp.databinding.ActivityMainBinding
+import com.example.todoapp.home.newtask.NewTaskDialogFragment
+import com.example.todoapp.home.newtask.NewTaskDialogListener
 
 class MainActivity : AppCompatActivity(), NewTaskDialogListener {
     private lateinit var binding: ActivityMainBinding
