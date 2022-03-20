@@ -1,7 +1,13 @@
 package com.example.todoapp.utils
 
+import com.example.todoapp.home.TodoListViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 object AppModule {
-    private val appModule = module {  }
+    val appModule = module {
+        viewModel {
+            TodoListViewModel()
+        }
+    }
 }
