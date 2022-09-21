@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TODOapp</string>
+    <string name="add_new_task">Adicionar nova tarefa</string>
 </resources>
