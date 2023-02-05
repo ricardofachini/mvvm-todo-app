@@ -4,6 +4,7 @@ import com.example.data.local.AppDatabase
 import com.example.data.repository.TaskRepositoryLocal
 import com.example.domain.repository.ITaskRepositoryLocal
 import com.example.domain.usecase.AddTaskUseCase
+import com.example.domain.usecase.DeleteTaskUseCase
 import com.example.domain.usecase.GetTasksUseCase
 import dagger.Module
 import dagger.Provides
@@ -25,6 +26,12 @@ object AppModule {
     @Provides
     fun provideGetTasksUseCase(repositoryLocal: ITaskRepositoryLocal): GetTasksUseCase {
         return GetTasksUseCase(repositoryLocal)
+    }
+
+    @Singleton
+    @Provides
+    fun provideDeleteTaskUseCase(repositoryLocal: ITaskRepositoryLocal): DeleteTaskUseCase {
+        return DeleteTaskUseCase(repositoryLocal)
     }
 
     @Provides
