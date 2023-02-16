@@ -16,6 +16,9 @@ class TasksAdapter(): ListAdapter<Task, TasksViewHolder>(TasksAdapter) {
 
     override fun onBindViewHolder(holder: TasksViewHolder, position: Int) {
         val task = getItem(position)
+        holder.checkBox.setOnCheckedChangeListener { _, isChecked ->
+            task.isDone = isChecked
+        }
         holder.bind(task)
     }
 
