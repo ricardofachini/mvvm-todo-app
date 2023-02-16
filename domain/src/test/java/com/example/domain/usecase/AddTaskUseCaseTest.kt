@@ -28,7 +28,12 @@ class AddTaskUseCaseTest {
     @Test
     fun `test add new task`() {
         runBlocking {
-            val result = useCase.invoke()
+            val result = useCase.invoke(
+                Task(
+                    id = 0,
+                    title = "tarefa",
+                    isDone = false)
+            )
             if (!result) {
                 fail()
             } else {
