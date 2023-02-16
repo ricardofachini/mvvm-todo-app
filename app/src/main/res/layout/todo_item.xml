@@ -10,7 +10,7 @@
         android:id="@+id/todoTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Titulo"
+        android:text="@string/title"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/checkbox"
@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/Widget.AppCompat.CompoundButton.RadioButton"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
