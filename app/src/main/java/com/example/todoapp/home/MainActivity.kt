@@ -3,10 +3,13 @@ package com.example.todoapp.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.model.Task
+import com.example.todoapp.R
 import com.example.todoapp.databinding.ActivityMainBinding
 import com.example.todoapp.home.adapter.TasksAdapter
 import com.example.todoapp.home.newtask.NewTaskDialogFragment
@@ -31,6 +34,20 @@ class MainActivity : AppCompatActivity(), NewTaskDialogListener {
             tasksAdapter.submitList(data)
             tasksAdapter.notifyDataSetChanged()
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.delete_task -> {
+            true
+        }
+        else -> {
+            super.onOptionsItemSelected(item)
+        }
     }
 
     private fun setupView() {
