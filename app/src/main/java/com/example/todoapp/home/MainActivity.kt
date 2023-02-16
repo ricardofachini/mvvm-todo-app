@@ -19,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NewTaskDialogListener {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var myAdapter: TasksAdapter
     private val viewModel: TodoListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,13 +27,13 @@ class MainActivity : AppCompatActivity(), NewTaskDialogListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupView()
-        val tasksAdapter = TasksAdapter()
-        binding.todoList.adapter = tasksAdapter
+        myAdapter = TasksAdapter()
+        binding.todoList.adapter = myAdapter
         binding.todoList.layoutManager = LinearLayoutManager(this)
         viewModel.getAllTasks()
         viewModel.tasksList.observe(this, Observer { data ->
-            tasksAdapter.submitList(data)
-            tasksAdapter.notifyDataSetChanged()
+            myAdapter.submitList(data)
+            myAdapter.notifyDataSetChanged()
         })
     }
 
@@ -41,12 +42,29 @@ class MainActivity : AppCompatActivity(), NewTaskDialogListener {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.delete_task -> {
-            true
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.delete_task -> {
+                onTrashcanClicked()
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
         }
-        else -> {
-            super.onOptionsItemSelected(item)
+
+    }
+
+    private fun onTrashcanClicked() {
+        val toBeDeleteList: MutableList<Task> = mutableListOf()
+        val list = myAdapter.currentList
+        list.map {
+            if (it.isDone) {
+                toBeDeleteList.add(it)
+            }
+        }
+        toBeDeleteList.map {
+            viewModel.delete(it.id)
         }
     }
 

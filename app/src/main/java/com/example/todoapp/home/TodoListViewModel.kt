@@ -38,6 +38,7 @@ class TodoListViewModel @Inject constructor(
     fun delete(id: Int) {
         viewModelScope.launch {
             val result = deleteTaskUseCase.delete(id)
+            println("resultado delete: $result")
         }
     }
 
