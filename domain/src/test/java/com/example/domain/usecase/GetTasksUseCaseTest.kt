@@ -17,8 +17,8 @@ class GetTasksUseCaseTest {
     @Before
     fun setupTest() {
         val repositoryMock: ITaskRepositoryLocal = mock()
-        val task = com.example.domain.model.Task(1, "task", false)
-        val actual = mutableListOf<com.example.domain.model.Task>()
+        val task = Task(1, "task", false)
+        val actual = mutableListOf<Task>()
         actual.add(task)
         whenever(repositoryMock.getAllTasks()).thenReturn( flow {
             emit(actual)
