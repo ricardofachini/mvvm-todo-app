@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity(), NewTaskDialogListener {
         viewModel.getAllTasks()
         viewModel.tasksList.observe(this, Observer { data ->
             myAdapter.submitList(data)
-            myAdapter.notifyDataSetChanged()
         })
     }
 
