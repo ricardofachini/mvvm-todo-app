@@ -35,6 +35,9 @@ class TodoListViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Deletes specific task from user
+     */
     fun delete(id: Int) {
         viewModelScope.launch {
             val result = deleteTaskUseCase.delete(id)
@@ -42,7 +45,9 @@ class TodoListViewModel @Inject constructor(
         }
     }
 
-
+    /**
+     * Method for retrieving all active tasks from user
+     */
     fun getAllTasks() {
         getTasksUseCase.call().onEach { data ->
             this.tasksList.value = data
