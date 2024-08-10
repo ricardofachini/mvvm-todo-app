@@ -6,7 +6,9 @@ import com.example.data.remote.entity.response.TaskResponse
 import com.example.domain.model.Task
 import com.example.domain.repository.ITaskRepositoryRemote
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class TaskRepositoryRemote @Inject constructor(
     private val service: TaskRemoteService
 ): ITaskRepositoryRemote {
