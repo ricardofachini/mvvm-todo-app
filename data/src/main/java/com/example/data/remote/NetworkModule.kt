@@ -6,6 +6,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -22,11 +24,20 @@ object NetworkModule {
         return "http://10.0.2.2:8000/api/"
     }
 
+    val interceptor : HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
+    }
+
+    val client : OkHttpClient = OkHttpClient.Builder().apply {
+        addInterceptor(interceptor)
+    }.build()
+
     @Provides
     @Singleton
     fun provideRetrofit(baseUrl: String): Retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
         .addConverterFactory(MoshiConverterFactory.create(providesMoshi()))
+        .client(client)
         .build()
 
     @Provides
