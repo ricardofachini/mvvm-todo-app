@@ -51,6 +51,7 @@ class TaskRepositoryLocal @Inject constructor(
         return Task(
             id = id,
             title = title,
+            description = "",
             isDone = isDone
         )
     }

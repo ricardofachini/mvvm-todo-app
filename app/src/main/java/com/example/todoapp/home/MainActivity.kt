@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity(), NewTaskDialogListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupView()
         myAdapter = TasksAdapter()
         binding.todoList.adapter = myAdapter
         binding.todoList.layoutManager = LinearLayoutManager(this)
@@ -35,6 +34,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogListener {
             myAdapter.submitList(tasks)
         }
         viewModel.tasksList.observe(this, tasksObserver)
+        setupView()
 //        viewModel.getAllTasks()
 //        viewModel.tasksList.observe(this, Observer { data ->
 //            myAdapter.submitList(data)
@@ -86,6 +86,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogListener {
         val task = Task(
             id = 0,
             title = title,
+            description = "",
             isDone = false
         )
         viewModel.addTask(task)

@@ -5,8 +5,16 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class TaskResponse(
-    @field:Json(name = "id") val taskId: Int,
-    @field:Json(name = "title") val title: String,
-    @field:Json(name = "description") val description: String,
-    @field:Json(name = "is_completed") val isDone: Boolean,
+
+    @Json(name = "id")
+    val taskId: Int,
+
+    @Json(name = "title")
+    val title: String,
+
+    @Json(name = "description")
+    val description: String,
+
+    @Json(name = "is_completed")
+    val isDone: Boolean,
 )

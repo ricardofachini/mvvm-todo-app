@@ -10,7 +10,7 @@ import android.util.Log
 import android.widget.EditText
 import androidx.fragment.app.DialogFragment
 import com.example.todoapp.R
-import kotlinx.android.synthetic.main.fragment_new_task_dialog.*
+//import kotlinx.android.synthetic.main.fragment_new_task_dialog.*
 
 
 class NewTaskDialogFragment: DialogFragment() {
