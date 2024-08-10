@@ -2,12 +2,14 @@ package com.example.domain.usecase
 
 import com.example.domain.model.Task
 import com.example.domain.repository.ITaskRepositoryLocal
+import com.example.domain.repository.ITaskRepositoryRemote
 
 class AddTaskUseCase constructor(
-    private val taskLocalRepositoryLocal: ITaskRepositoryLocal
+    private val taskRepositoryLocal: ITaskRepositoryLocal,
+    private val taskRepositoryRemote: ITaskRepositoryRemote,
 ) {
 
     suspend fun invoke(task: Task): Boolean {
-        return taskLocalRepositoryLocal.insertNewTask(task)
+        return taskRepositoryLocal.insertNewTask(task)
     }
 }

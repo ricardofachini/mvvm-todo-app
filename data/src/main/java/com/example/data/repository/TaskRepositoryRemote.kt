@@ -12,7 +12,9 @@ class TaskRepositoryRemote @Inject constructor(
 ): ITaskRepositoryRemote {
 
     override suspend fun getTasks(): List<Task> {
-        TODO("Not yet implemented")
+        return service.getAllTasks().map {
+            it.toDomain()
+        }
     }
 
     override suspend fun insertNewTask(task: Task) {

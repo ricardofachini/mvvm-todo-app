@@ -2,13 +2,16 @@ package com.example.domain.usecase
 
 import com.example.domain.model.Task
 import com.example.domain.repository.ITaskRepositoryLocal
+import com.example.domain.repository.ITaskRepositoryRemote
 import kotlinx.coroutines.flow.Flow
 
 class GetTasksUseCase(
-    private val taskLocalRepositoryLocal: ITaskRepositoryLocal
+    private val taskRepositoryLocal: ITaskRepositoryLocal,
+    private val taskRepositoryRemote: ITaskRepositoryRemote,
 ) {
 
-    fun call(): Flow<List<Task>> {
-        return taskLocalRepositoryLocal.getAllTasks()
+    suspend fun call(): List<Task> {
+        //return taskLocalRepositoryLocal.getAllTasks()
+        return taskRepositoryRemote.getTasks()
     }
 }
