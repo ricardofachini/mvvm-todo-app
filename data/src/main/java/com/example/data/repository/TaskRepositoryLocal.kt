@@ -14,7 +14,7 @@ class TaskRepositoryLocal @Inject constructor(
     private val database: AppDatabase
 ): ITaskRepositoryLocal {
 
-    override fun getAllTasks(): Flow<List<Task>> {
+    override suspend fun getAllTasks(): Flow<List<Task>> {
         return database.taskDao().getAllTasks().map { data ->
             data.map { entity ->
                 entity.toDomain()
