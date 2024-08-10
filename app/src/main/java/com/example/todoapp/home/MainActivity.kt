@@ -30,10 +30,15 @@ class MainActivity : AppCompatActivity(), NewTaskDialogListener {
         myAdapter = TasksAdapter()
         binding.todoList.adapter = myAdapter
         binding.todoList.layoutManager = LinearLayoutManager(this)
-        viewModel.getAllTasks()
-        viewModel.tasksList.observe(this, Observer { data ->
-            myAdapter.submitList(data)
-        })
+
+        val tasksObserver = Observer<List<Task>> {tasks ->
+            myAdapter.submitList(tasks)
+        }
+        viewModel.tasksList.observe(this, tasksObserver)
+//        viewModel.getAllTasks()
+//        viewModel.tasksList.observe(this, Observer { data ->
+//            myAdapter.submitList(data)
+//        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -71,6 +76,7 @@ class MainActivity : AppCompatActivity(), NewTaskDialogListener {
         binding.addButton.setOnClickListener {
             NewTaskDialogFragment().show(supportFragmentManager, "TAG")
         }
+        viewModel.getAllTasks()
     }
 
     /**

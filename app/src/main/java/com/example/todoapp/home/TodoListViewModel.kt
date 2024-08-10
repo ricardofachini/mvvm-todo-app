@@ -49,9 +49,13 @@ class TodoListViewModel @Inject constructor(
      * Method for retrieving all active tasks from user
      */
     fun getAllTasks() {
-        getTasksUseCase.call().onEach { data ->
-            this.tasksList.value = data
-        }.launchIn(viewModelScope)
+//        getTasksUseCase.call().onEach { data ->
+//            this.tasksList.value = data
+//        }.launchIn(viewModelScope)
+
+        viewModelScope.launch {
+            tasksList.value = getTasksUseCase.call()
+        }
     }
 
 }

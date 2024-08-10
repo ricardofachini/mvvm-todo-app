@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface ITaskRepositoryLocal {
 
-    fun getAllTasks(): Flow<List<Task>>
+    suspend fun getAllTasks(): Flow<List<Task>>
 
     suspend fun insertNewTask(task: Task): Boolean
 
